@@ -1,0 +1,69 @@
+---
+ 
+- name: Example
+ 
+  hosts: servers
+ 
+  tasks:
+    - name: Install aptitude
+      apt:
+        name: aptitude      
+        state: latest
+
+    - name: Install packages
+      apt:
+        pkg:      
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+        state: latest
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg      
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+ 
+
+    - name: Update apt and install docker-ce
+      apt:
+        name: docker-ce
+        state: latest
+    - name: Install Docker Module for Python
+      pip:
+        name: docker
+
+    - name: Pull image
+      docker_image:
+        name: nginx     
+        source: pull 
+
+    - name: Create container
+      docker_container:
+        name: nginx222
+        image: nginx
+        state: started
+        ports:
+        - "8080:80"
+        tty: true
+        detach: true     
+
+    - name: Copy service
+      copy:
+        src: /opt/unit.service
+        dest: /etc/systemd/system/nginx.service
+
+    - name: Start and enable service
+      systemd:
+        state: started
+        name: nginx.service
+        enabled: yes
+        daemon_reload: yes
