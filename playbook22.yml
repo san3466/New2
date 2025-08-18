@@ -1,1 +1,23 @@
+---
+ 
+- name: Example
+ 
+  hosts: servers
+ 
+  tasks:
+    - name: Install aptitude
+      apt:
+        name: aptitude      
+        state: latest
 
+    - name: Install packages
+      apt:
+        pkg:      
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+        state: latest
