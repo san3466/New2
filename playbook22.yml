@@ -8,8 +8,7 @@
     - name: Install aptitude
       ansible.builtin.file:
         path: /home/user/awxtopgit.txt
-        owner: foo
-        group: foo
-        mode: '0644'
+        state: touch
+        mode: u=rw,g=r,o=r
 
 
