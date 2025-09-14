@@ -11,9 +11,10 @@
   tasks:
     - name: Install aptitude
       ansible.builtin.file:
-        path: /home/user/{{new_file}}
+        path: /home/user/{{ item }}
         state: touch
         mode: u=rw,g=r,o=r
+      loop: "{{ new_file }}"  
 
     - name: Install aptitude2
       ansible.builtin.file:
