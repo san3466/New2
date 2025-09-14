@@ -1,0 +1,13 @@
+---
+ 
+- name: Example
+ 
+  hosts: all
+
+  
+  tasks:
+    - name: Install aptitude
+      ansible.builtin.file:
+        path: /home/user/wf2.txt
+        state: touch
+        mode: u=rw,g=r,o=r
