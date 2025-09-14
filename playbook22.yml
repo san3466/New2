@@ -11,7 +11,7 @@
   tasks:
     - name: Install aptitude
       ansible.builtin.file:
-        path: "/home/user/{{new_file}}"
+        path: /home/user/{{new_file}}
         state: touch
         mode: u=rw,g=r,o=r
 
