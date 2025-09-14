@@ -5,8 +5,8 @@
   hosts: all
   vars:
     new_file: 
-      - surveytest.txt
-      - test2survey.txt
+      - 'surveytest.txt'
+      - 'test2survey.txt'
   
   tasks:
     - name: Install aptitude
