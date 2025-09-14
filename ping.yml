@@ -1,0 +1,10 @@
+---
+ 
+- name: Example
+ 
+  hosts: all
+
+  
+  tasks:
+    - name: Ping
+      ping:
