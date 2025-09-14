@@ -15,4 +15,10 @@
         state: touch
         mode: u=rw,g=r,o=r
 
+    - name: Install aptitude2
+      ansible.builtin.file:
+        path: "/home/user/{{new_file2}}"
+        state: touch
+        mode: u=rw,g=r,o=r    
+
 
